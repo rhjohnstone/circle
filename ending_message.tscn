@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://86v35n5hpvuc"]
+
+[ext_resource type="Script" path="res://ending_message.gd" id="1_1pnkc"]
+[ext_resource type="Script" path="res://Message.gd" id="2_tgw0s"]
+
+[node name="EndingMessage" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 200
+script = ExtResource("1_1pnkc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Message1" type="Label" parent="PanelContainer/VSplitContainer"]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 60
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_tgw0s")
+
+[node name="Message2" type="Label" parent="PanelContainer/VSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "You have saved the world"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_tgw0s")
+
+[node name="Message3" type="Label" parent="PanelContainer/VSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "After all, isn't the world just a"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_tgw0s")
+
+[node name="Message4" type="Label" parent="PanelContainer/VSplitContainer"]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "CIRCLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_tgw0s")

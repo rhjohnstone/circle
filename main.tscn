@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7gjdwsuhxxph"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_v0uno"]
+[ext_resource type="PackedScene" uid="uid://736lekji0qaw" path="res://boundary.tscn" id="2_cr547"]
+[ext_resource type="Texture2D" uid="uid://owx1ffj2oeyq" path="res://circle.png" id="3_q6qsm"]
+[ext_resource type="PackedScene" uid="uid://86v35n5hpvuc" path="res://ending_message.tscn" id="4_v47re"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3263c"]
+bounce = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kaup"]
+radius = 101.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jt4wx"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3173"]
+radius = 6.0
+
+[node name="Main" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v0uno")
+
+[node name="Boundary" parent="." instance=ExtResource("2_cr547")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Circle" type="RigidBody2D" parent="Control"]
+physics_material_override = SubResource("PhysicsMaterial_3263c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Circle"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_q6qsm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Circle"]
+shape = SubResource("CircleShape2D_7kaup")
+
+[node name="Mouse" type="Area2D" parent="."]
+position = Vector2(-10, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
+shape = SubResource("CircleShape2D_jt4wx")
+
+[node name="StartPoint" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartPoint"]
+shape = SubResource("CircleShape2D_k3173")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer"]
+
+[node name="EndingMessage" parent="CanvasLayer" instance=ExtResource("4_v47re")]
+
+[connection signal="game_completed" from="." to="." method="_on_game_completed"]
+[connection signal="body_entered" from="Mouse" to="." method="_on_mouse_body_entered"]
+[connection signal="area_entered" from="StartPoint" to="." method="_on_start_point_area_entered"]
